@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import Numpad from '../Molecules/Numpad'
-import ValueInput from '../atoms/Inputs/ValueInput/ValueInput';
+/* eslint-disable import/no-unresolved */
+import React, { useState, useCallback } from 'react';
+import Numpad from '../molecules/Numpad';
+import ValueInput from '../atoms/inputs/valueInput/ValueInput';
+import './styles/Calculator.scss';
 
 
 function Calculator(){
@@ -9,41 +11,41 @@ function Calculator(){
   const [firstValue, setFirstValue] = useState('');
   const [operator, setOperator] = useState(null);
 
+  // useEffect(() => {
+  //   if (!Number.isNaN(Number(inputValue))) {
+  //     setInputValue('');
+  //     setOperator(null);
+  //     setFirstValue('');
+  //   }
+  // }, [inputValue])
 
-  const numberToInput = (number) => {
+  const numberToInput = useCallback((event) => {
+
+    const number = event.target.name;
 
     if (operator === 'previous+') {
       setFirstValue(inputValue);
       setInputValue(number);
-      return setOperator('+');
-    }
-    
-    if (operator === 'previous-') {
+      setOperator('+');
+    } else if (operator === 'previous-') {
       setFirstValue(inputValue);
       setInputValue(number);
-      return setOperator('-');
-    }
-    
-    if (operator === 'previous/') {
+      setOperator('-');
+    } else if (operator === 'previous/') {
       setFirstValue(inputValue);
       setInputValue(number);
-      return setOperator('/');
-    }
-    
-    if (operator === 'previous*') {
+      setOperator('/');
+    } else if (operator === 'previous*') {
       setFirstValue(inputValue);
       setInputValue(number);
-      return setOperator('*');
-    } 
-    
-    if (operator === 'previous%') {
+      setOperator('*');
+    } else if (operator === 'previous%') {
       setFirstValue(inputValue);
       setInputValue(number);
-      return setOperator('%');
-    } 
-    
-    return setInputValue(`${inputValue}${number}`);
-  };
+       setOperator('%');
+    } else setInputValue(`${inputValue}${number}`);
+
+  },[inputValue, operator]);
 
   const eraseInput = () => {
     setInputValue('');
@@ -57,29 +59,43 @@ function Calculator(){
   };
 
   const equal = () => {
+      if (operator === '+') {
 
-    if (operator === '+') {
-      const solution = parseFloat(inputValue, 10) + firstValue;
-      return setInputValue(solution);
-    }
+        const solution = parseFloat(inputValue, 10) + firstValue;
+        if (Number.isNaN(solution)) {
+          eraseInput(); 
+        } else setInputValue(solution);
 
-    if (operator === '-') {
-      return setInputValue(firstValue - parseFloat(inputValue, 10));
-    } 
+      } else if (operator === '-') {
 
-    if (operator === '*') {
-      return setInputValue(firstValue * parseFloat(inputValue, 10));
-    } 
+        const solution = firstValue - parseFloat(inputValue, 10);
+        if (Number.isNaN(solution)) {
+          eraseInput(); 
+        } else setInputValue(solution);
+        
+      } else if (operator === '*') {
 
-    if (operator === '/') {
-      return setInputValue(firstValue / parseFloat(inputValue, 10));
-    } 
-    
-    if (operator === '%') {
-      return setInputValue(firstValue % parseFloat(inputValue, 10));
-    }
+        const solution = firstValue * parseFloat(inputValue, 10);
+        if (Number.isNaN(solution)) {
+          eraseInput(); 
+        } else setInputValue(solution);
 
-    return setOperator(null);
+      } else if (operator === '/') {
+
+        const solution = firstValue / parseFloat(inputValue, 10);
+        if (Number.isNaN(solution)) {
+           eraseInput(); 
+        } else setInputValue(solution);
+
+      } else if (operator === '%') {
+        
+        const solution = firstValue % parseFloat(inputValue, 10);
+        if (Number.isNaN(solution)) {
+          eraseInput(); 
+       } else setInputValue(solution);
+
+      } else setOperator(null);
+
   };
 
   const addValues = () => {
@@ -87,10 +103,8 @@ function Calculator(){
     if (operator === null) {
       setFirstValue(parseFloat(inputValue, 10));
       setInputValue('');
-      return setOperator('+');
-    }
-    
-    if (
+      setOperator('+');
+    } else if (
       operator === '+' ||
       operator === '-' ||
       operator === '*' ||
@@ -98,10 +112,8 @@ function Calculator(){
       operator === '%'
     ) {
       equal();
-      return setOperator('previous+');
-    } 
-
-    return equal();
+      setOperator('previous+');
+    } else equal();
     
   };
 
@@ -109,10 +121,8 @@ function Calculator(){
     if (operator === null) {
       setFirstValue(parseFloat(inputValue, 10));
       setInputValue('');
-      return setOperator('*');
-    } 
-    
-    if (
+      setOperator('*');
+    } else if (
       operator === '+' ||
       operator === '-' ||
       operator === '*' ||
@@ -120,10 +130,9 @@ function Calculator(){
       operator === '%'
     ) {
       equal();
-      return setOperator('previous*');
-    } 
-    
-    return equal();
+      setOperator('previous*');
+    } else
+    equal();
     
   };
 
@@ -131,10 +140,8 @@ function Calculator(){
     if (operator === null) {
       setFirstValue(parseFloat(inputValue, 10));
       setInputValue('');
-      return setOperator('-');
-    } 
-    
-    if (
+      setOperator('-');
+    } else if (
       operator === '+' ||
       operator === '-' ||
       operator === '*' ||
@@ -142,10 +149,8 @@ function Calculator(){
       operator === '%'
     ) {
       equal();
-      return setOperator('previous-');
-    } 
-    
-    return equal();
+      setOperator('previous-');
+    } else equal();
     
   };
 
@@ -153,10 +158,8 @@ function Calculator(){
     if (operator === null) {
       setFirstValue(parseFloat(inputValue, 10));
       setInputValue('');
-      return setOperator('%');
-    } 
-    
-    if (
+      setOperator('%');
+    } else if (
       operator === '+' ||
       operator === '-' ||
       operator === '*' ||
@@ -164,10 +167,8 @@ function Calculator(){
       operator === '%'
     ) {
       equal();
-      return setOperator('previous%');
-    } 
-    
-    return equal();
+      setOperator('previous%');
+    } else equal();
     
   };
 
@@ -176,10 +177,8 @@ function Calculator(){
     if (operator === null) {
       setFirstValue(parseFloat(inputValue, 10));
       setInputValue('');
-      return setOperator('/');
-    }  
-    
-    if (
+      setOperator('/');
+    } else if (
       operator === '+' ||
       operator === '-' ||
       operator === '*' ||
@@ -187,10 +186,8 @@ function Calculator(){
       operator === '%'
     ) {
       equal();
-      return setOperator('previous/');
-    } 
-    
-    return equal();
+      setOperator('previous/');
+    } else equal();
     
   };
 

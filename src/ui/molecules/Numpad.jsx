@@ -1,41 +1,43 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './styles.scss';
+import './styles/Numpad.scss';
 
 const propTypes={
   buttonFunctions: PropTypes.func.isRequired,
 }
 
 function Numpad(props) {
+
   const {buttonFunctions} = props;
+
   return (
     <div>
       <div>
         <button
           className="button--orange"
           type="button"
-          onClick={() => buttonFunctions.eraseInput()}
+          onClick={buttonFunctions.eraseInput}
         >
           AC
         </button> 
         <button
           className="button--orange"
           type="button"
-          onClick={() => buttonFunctions.changePole()}
+          onClick={buttonFunctions.changePole}
         >
           +/-
         </button>
         <button
           className="button--orange"
           type="button"
-          onClick={() => buttonFunctions.moduleValues()}
+          onClick={buttonFunctions.moduleValues}
         >
           %
         </button>
         <button
           className="button--orange"
           type="button"
-          onClick={() => buttonFunctions.divideValues()}
+          onClick={buttonFunctions.divideValues}
         >
           /
         </button>
@@ -44,28 +46,31 @@ function Numpad(props) {
         <button
           className="button"
           type="button"
-          onClick={() => buttonFunctions.numberToInput(7)}
+          name="7"
+          onClick={buttonFunctions.numberToInput}
         >
           7
         </button>
         <button
           className="button"
           type="button"
-          onClick={() => buttonFunctions.numberToInput(8)}
+          name="8"
+          onClick={buttonFunctions.numberToInput}
         >
           8
         </button>
         <button
           className="button"
           type="button"
-          onClick={() => buttonFunctions.numberToInput(9)}
+          name="9"
+          onClick={buttonFunctions.numberToInput}
         >
           9
         </button>
         <button
           className="button--orange"
           type="button"
-          onClick={() => buttonFunctions.multiplyValues()}
+          onClick={buttonFunctions.multiplyValues}
         >
           X
         </button>
@@ -74,21 +79,24 @@ function Numpad(props) {
         <button
           className="button"
           type="button"
-          onClick={() => buttonFunctions.numberToInput(4)}
+          name="4"
+          onClick={buttonFunctions.numberToInput}
         >
           4
         </button>
         <button
           className="button"
           type="button"
-          onClick={() => buttonFunctions.numberToInput(5)}
+          name="5"
+          onClick={buttonFunctions.numberToInput}
         >
           5
         </button>
         <button
           className="button"
           type="button"
-          onClick={() => buttonFunctions.numberToInput(6)}
+          name="6"
+          onClick={buttonFunctions.numberToInput}
         >
           6
         </button>
@@ -104,21 +112,24 @@ function Numpad(props) {
         <button
           className="button"
           type="button"
-          onClick={() => buttonFunctions.numberToInput(1)}
+          name="1"
+          onClick={buttonFunctions.numberToInput}
         >
           1
         </button>
         <button
           className="button"
           type="button"
-          onClick={() => buttonFunctions.numberToInput(2)}
+          name="2"
+          onClick={buttonFunctions.numberToInput}
         >
           2
         </button>
         <button
           className="button"
           type="button"
-          onClick={() => buttonFunctions.numberToInput(3)}
+          name="3"
+          onClick={buttonFunctions.numberToInput}
         >
           3
         </button>
@@ -134,21 +145,23 @@ function Numpad(props) {
         <button
           className="button--rowspan-2"
           type="button"
-          onClick={() => buttonFunctions.numberToInput(0)}
+          name="0"
+          onClick={buttonFunctions.numberToInput}
         >
           0
         </button>
         <button
           className="button"
           type="button"
-          onClick={() => buttonFunctions.numberToInput('.')}
+          name="."
+          onClick={buttonFunctions.numberToInput}
         >
           .
         </button>
         <button
           className="button--orange button--bottomRightRadius"
           type="button"
-          onClick={() => buttonFunctions.equal()}
+          onClick={buttonFunctions.equal}
         >
           =
         </button>

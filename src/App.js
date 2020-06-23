@@ -1,8 +1,8 @@
 import React from 'react';
-import AppPage from './Components/Pages/AppPage.Component';
+import AppTemplate from './ui/templates/AppTemplate';
 
 function App() {
-  return <AppPage />;
+  return <AppTemplate />;
 }
 
 export default App;
