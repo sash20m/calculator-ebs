@@ -1,8 +1,8 @@
 import React from 'react';
-import Calculator from './Components/Calculator.Component';
+import AppPage from './Components/Pages/AppPage.Component';
 
 function App() {
-  return <Calculator />;
+  return <AppPage />;
 }
 
 export default App;
