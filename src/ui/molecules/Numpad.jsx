@@ -1,14 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import './styles/Numpad.scss';
+import PropTypes, { func } from 'prop-types';
+import './Numpad.scss';
 
-const propTypes={
-  buttonFunctions: PropTypes.func.isRequired,
-}
+const propTypes = {
+  buttonFunctions: PropTypes.shape({
+    eraseInput: func.isRequired,
+    numberToInput: func.isRequired,
+    changePole: func.isRequired,
+    moduleValues: func.isRequired,
+    divideValues: func.isRequired,
+    equal: func.isRequired,
+    subtractValues: func.isRequired,
+    addValues: func.isRequired,
+    multiplyValues: func.isRequired,
+  }).isRequired,
+};
 
 function Numpad(props) {
-
-  const {buttonFunctions} = props;
+  const { buttonFunctions } = props;
 
   return (
     <div>
@@ -19,7 +28,7 @@ function Numpad(props) {
           onClick={buttonFunctions.eraseInput}
         >
           AC
-        </button> 
+        </button>
         <button
           className="button--orange"
           type="button"
@@ -103,7 +112,7 @@ function Numpad(props) {
         <button
           className="button--orange"
           type="button"
-          onClick={() => buttonFunctions.subtractValues()}
+          onClick={buttonFunctions.subtractValues}
         >
           -
         </button>
@@ -136,7 +145,7 @@ function Numpad(props) {
         <button
           className="button--orange"
           type="button"
-          onClick={() => buttonFunctions.addValues()}
+          onClick={buttonFunctions.addValues}
         >
           +
         </button>

@@ -1,6 +1,6 @@
 import React from 'react';
-import Calculator from '../organisms/Calculator'
-import './styles/AppTemplate.scss';
+import Calculator from '../organisms/Calculator';
+import './AppTemplate.scss';
 
 function AppPage() {
   return (
