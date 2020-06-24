@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved */
 import React, { useState, useCallback } from 'react';
 import Numpad from '../molecules/Numpad';
 import ValueInput from '../atoms/inputs/valueInput/ValueInput';
@@ -10,14 +9,6 @@ function Calculator(){
   const [inputValue, setInputValue] = useState('');
   const [firstValue, setFirstValue] = useState('');
   const [operator, setOperator] = useState(null);
-
-  // useEffect(() => {
-  //   if (!Number.isNaN(Number(inputValue))) {
-  //     setInputValue('');
-  //     setOperator(null);
-  //     setFirstValue('');
-  //   }
-  // }, [inputValue])
 
   const numberToInput = useCallback((event) => {
 
